@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lab09_MuñozHerrera.Infrastructure;
+namespace Lab09_MuñozHerrera.Core.Entities;
 
 public partial class Product
 {

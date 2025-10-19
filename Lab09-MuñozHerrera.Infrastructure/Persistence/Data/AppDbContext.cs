@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Lab09_MuñozHerrera.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Lab09_MuñozHerrera.Core.Entities;
+
 
 namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Data;
 
