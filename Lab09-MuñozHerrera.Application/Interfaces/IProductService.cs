@@ -1,9 +1,8 @@
-using Lab09_MuñozHerrera.Core.Entities;
+using Lab09_MuñozHerrera.Core.Entities; 
 
-namespace Lab09_MuñozHerrera.Core.Interfaces
+namespace Lab09_MuñozHerrera.Application.Interfaces
 {
-    // Métodos basados en
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface IProductService
     {
         Task<IEnumerable<Product>> GetProductsByPriceGreaterThanAsync(decimal price);
         Task<Product?> GetMostExpensiveProductAsync();

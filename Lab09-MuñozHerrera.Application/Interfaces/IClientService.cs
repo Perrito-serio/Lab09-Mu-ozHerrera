@@ -1,0 +1,9 @@
+using Lab09_MuñozHerrera.Application.DTOs;
+
+namespace Lab09_MuñozHerrera.Application.Interfaces
+{
+    public interface IClientService
+    {
+        Task<ClientWithOrderCountDto?> GetClientWithMostOrdersAsync();
+    }
+}
