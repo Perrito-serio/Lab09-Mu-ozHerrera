@@ -32,5 +32,13 @@ namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories
                 .Distinct()
                 .ToListAsync();
         }
+        
+        public async Task<IEnumerable<Client>> GetClientsWithOrdersAsNoTrackingAsync()
+        {
+            return await _context.Clients
+                .AsNoTracking() 
+                .Include(c => c.Orders) 
+                .ToListAsync();
+        }
     }
 }

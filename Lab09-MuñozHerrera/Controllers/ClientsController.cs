@@ -18,12 +18,20 @@ namespace Lab09_MuñozHerrera.Controllers
         [HttpGet("most-orders")]
         public async Task<IActionResult> GetClientWithMostOrders()
         {
-            var clientDto = await _clientService.GetClientWithMostOrdersAsync(); // <-- Llama al SERVICIO
+            var clientDto = await _clientService.GetClientWithMostOrdersAsync();
             if (clientDto == null)
             {
                 return NotFound("No se encontraron clientes con órdenes.");
             }
             return Ok(clientDto);
+        }
+        
+        // GET: api/clients/with-orders-asnotracking
+        [HttpGet("with-orders-asnotracking")]
+        public async Task<IActionResult> GetClientsWithOrdersAsNoTracking()
+        {
+            var clientsDto = await _clientService.GetClientsWithOrdersDtoAsync();
+            return Ok(clientsDto);
         }
     }
 }

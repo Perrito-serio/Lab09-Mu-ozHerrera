@@ -5,5 +5,7 @@ namespace Lab09_MuñozHerrera.Application.Interfaces
     public interface IClientService
     {
         Task<ClientWithOrderCountDto?> GetClientWithMostOrdersAsync();
+        
+        Task<IEnumerable<ClientOrderDto>> GetClientsWithOrdersDtoAsync();
     }
 }

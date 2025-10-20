@@ -7,5 +7,7 @@ namespace Lab09_MuñozHerrera.Core.Interfaces
         Task<IEnumerable<Client>> FindClientsByNameAsync(string name);
         Task<Client?> GetClientWithMostOrdersAsync();
         Task<IEnumerable<Client>> GetClientsByProductAsync(int productId);
+        
+        Task<IEnumerable<Client>> GetClientsWithOrdersAsNoTrackingAsync();
     }
 }
