@@ -51,5 +51,22 @@ namespace Lab09_MuñozHerrera.Application.Services
                 }).ToList()
             }).ToList();
         }
+        
+        public async Task<IEnumerable<OrderDetailsDto>> GetOrdersWithDetailsAndProductsDtoAsync()
+        {
+            var orders = await _unitOfWork.Orders.GetOrdersWithDetailsAndProductsAsync();
+
+            return orders.Select(order => new OrderDetailsDto
+            {
+                OrderId = order.Orderid,
+                OrderDate = order.Orderdate,
+                Products = order.Orderdetails.Select(od => new ProductDto
+                {
+                    ProductName = od.Product.Name,
+                    Quantity = od.Quantity,
+                    Price = od.Product.Price
+                }).ToList()
+            });
+        }
     }
 }

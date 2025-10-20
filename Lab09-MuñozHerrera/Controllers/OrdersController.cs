@@ -45,5 +45,12 @@ namespace Lab09_MuñozHerrera.Controllers
             var orders = await _orderService.GetAllOrdersWithDetailsAsync();
             return Ok(orders);
         }
+        // GET: api/orders/with-details-products 
+        [HttpGet("with-details-products")]
+        public async Task<IActionResult> GetOrdersWithDetailsAndProducts()
+        {
+            var ordersDto = await _orderService.GetOrdersWithDetailsAndProductsDtoAsync();
+            return Ok(ordersDto);
+        }
     }
 }

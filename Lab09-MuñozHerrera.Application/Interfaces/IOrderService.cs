@@ -9,5 +9,7 @@ namespace Lab09_MuñozHerrera.Application.Interfaces
         Task<int> GetTotalQuantityByOrderIdAsync(int orderId);
         Task<IEnumerable<Order>> GetOrdersAfterDateAsync(DateTime date);
         Task<IEnumerable<OrderWithDetailsDto>> GetAllOrdersWithDetailsAsync();
+        
+        Task<IEnumerable<OrderDetailsDto>> GetOrdersWithDetailsAndProductsDtoAsync();
     }
 }

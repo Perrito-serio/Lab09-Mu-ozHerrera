@@ -6,5 +6,6 @@ namespace Lab09_MuñozHerrera.Core.Interfaces
     {
         Task<IEnumerable<Order>> GetOrdersAfterDateAsync(DateTime date);
         Task<IEnumerable<Order>> GetAllOrdersWithDetailsAsync();
+        Task<IEnumerable<Order>> GetOrdersWithDetailsAndProductsAsync();
     }
 }

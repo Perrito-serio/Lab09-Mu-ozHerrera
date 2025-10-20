@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories
 {
-    // Lógica basada en
     public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
         public OrderRepository(AppDbContext context) : base(context) { }
@@ -23,6 +22,15 @@ namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories
                 .Include(o => o.Client)
                 .Include(o => o.Orderdetails)
                 .ThenInclude(od => od.Product)
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<Order>> GetOrdersWithDetailsAndProductsAsync()
+        {
+            return await _context.Orders
+                .Include(order => order.Orderdetails)
+                .ThenInclude(od => od.Product) 
+                .AsNoTracking()
                 .ToListAsync();
         }
     }
