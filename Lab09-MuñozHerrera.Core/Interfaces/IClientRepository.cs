@@ -11,5 +11,7 @@ namespace Lab09_MuñozHerrera.Core.Interfaces
         Task<IEnumerable<Client>> GetClientsWithOrdersAsNoTrackingAsync();
         
         Task<IEnumerable<(string ClientName, int TotalProducts)>> GetClientsWithTotalProductsAsync();
+        
+        Task<IEnumerable<(string ClientName, decimal TotalSales)>> GetTotalSalesByClientAsync();
     }
 }

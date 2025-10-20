@@ -9,5 +9,7 @@ namespace Lab09_MuñozHerrera.Application.Interfaces
         Task<IEnumerable<ClientOrderDto>> GetClientsWithOrdersDtoAsync();
         
         Task<IEnumerable<ClientTotalProductsDto>> GetClientsWithTotalProductsDtoAsync();
+        
+        Task<IEnumerable<SalesByClientDto>> GetTotalSalesByClientDtoAsync();
     }
 }

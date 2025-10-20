@@ -59,5 +59,33 @@ namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories
 
             return results.Select(result => (result.ClientName, result.TotalProducts));
         }
+        
+        public async Task<IEnumerable<(string ClientName, decimal TotalSales)>> GetTotalSalesByClientAsync()
+        {
+            var salesData = await _context.Orders
+                .AsNoTracking()
+                .Include(o => o.Orderdetails) 
+                .ThenInclude(od => od.Product) 
+                .GroupBy(o => o.Clientid) 
+                .Select(group => new
+                {
+                    ClientId = group.Key, 
+                    TotalSales = group
+                        .SelectMany(order => order.Orderdetails) 
+                        .Sum(detail => detail.Quantity * detail.Product.Price) 
+                })
+                .OrderByDescending(s => s.TotalSales) 
+                .ToListAsync(); 
+
+            var clientIds = salesData.Select(s => s.ClientId).ToList();
+            var clients = await _context.Clients
+                .Where(c => clientIds.Contains(c.Clientid))
+                .ToDictionaryAsync(c => c.Clientid, c => c.Name); 
+
+            return salesData.Select(s => (
+                ClientName: clients.ContainsKey(s.ClientId) ? clients[s.ClientId] : "Unknown", 
+                TotalSales: s.TotalSales
+            ));
+        }
     }
 }

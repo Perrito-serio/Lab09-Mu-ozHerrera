@@ -41,5 +41,13 @@ namespace Lab09_MuñozHerrera.Controllers
             var clientsDto = await _clientService.GetClientsWithTotalProductsDtoAsync();
             return Ok(clientsDto);
         }
+        
+        // GET: api/clients/total-sales
+        [HttpGet("total-sales")]
+        public async Task<IActionResult> GetTotalSalesByClient()
+        {
+            var salesDto = await _clientService.GetTotalSalesByClientDtoAsync();
+            return Ok(salesDto);
+        }
     }
 }

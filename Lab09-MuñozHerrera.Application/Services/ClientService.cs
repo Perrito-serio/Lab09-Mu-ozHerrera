@@ -56,5 +56,17 @@ namespace Lab09_MuñozHerrera.Application.Services
                 TotalProducts = data.TotalProducts
             });
         }
+        
+        // Implementación del método GetTotalSalesByClientDtoAsync
+        public async Task<IEnumerable<SalesByClientDto>> GetTotalSalesByClientDtoAsync()
+        {
+            var salesData = await _unitOfWork.Clients.GetTotalSalesByClientAsync();
+
+            return salesData.Select(data => new SalesByClientDto
+            {
+                ClientName = data.ClientName,
+                TotalSales = data.TotalSales
+            });
+        }
     }
 }
