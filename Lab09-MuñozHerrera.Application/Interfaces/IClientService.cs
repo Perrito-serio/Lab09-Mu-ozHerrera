@@ -7,5 +7,7 @@ namespace Lab09_MuñozHerrera.Application.Interfaces
         Task<ClientWithOrderCountDto?> GetClientWithMostOrdersAsync();
         
         Task<IEnumerable<ClientOrderDto>> GetClientsWithOrdersDtoAsync();
+        
+        Task<IEnumerable<ClientTotalProductsDto>> GetClientsWithTotalProductsDtoAsync();
     }
 }

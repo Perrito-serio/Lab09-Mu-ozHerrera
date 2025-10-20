@@ -2,10 +2,11 @@ using Lab09_MuñozHerrera.Core.Entities;
 using Lab09_MuñozHerrera.Core.Interfaces;
 using Lab09_MuñozHerrera.Infrastructure.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
 
 namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories
 {
-    // Lógica basada en
     public class ClientRepository : GenericRepository<Client>, IClientRepository
     {
         public ClientRepository(AppDbContext context) : base(context) { }
@@ -39,6 +40,24 @@ namespace Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories
                 .AsNoTracking() 
                 .Include(c => c.Orders) 
                 .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<(string ClientName, int TotalProducts)>> GetClientsWithTotalProductsAsync()
+        {
+            var results = await _context.Clients
+                .AsNoTracking()
+                .Include(c => c.Orders)
+                .ThenInclude(o => o.Orderdetails)
+                .Select(client => new 
+                {
+                    ClientName = client.Name,
+                    TotalProducts = client.Orders
+                        .SelectMany(order => order.Orderdetails)
+                        .Sum(detail => detail.Quantity)
+                })
+                .ToListAsync();
+
+            return results.Select(result => (result.ClientName, result.TotalProducts));
         }
     }
 }

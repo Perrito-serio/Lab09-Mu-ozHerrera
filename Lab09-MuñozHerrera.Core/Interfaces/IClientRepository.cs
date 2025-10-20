@@ -9,5 +9,7 @@ namespace Lab09_MuñozHerrera.Core.Interfaces
         Task<IEnumerable<Client>> GetClientsByProductAsync(int productId);
         
         Task<IEnumerable<Client>> GetClientsWithOrdersAsNoTrackingAsync();
+        
+        Task<IEnumerable<(string ClientName, int TotalProducts)>> GetClientsWithTotalProductsAsync();
     }
 }
