@@ -5,6 +5,8 @@ using Lab09_MuñozHerrera.Infrastructure.Persistence.Data;
 using Lab09_MuñozHerrera.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
+using Lab09_MuñozHerrera.Infrastructure.Services; 
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -17,6 +19,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
+// Registramos la interfaz (Application) con su implementación (Infrastructure)
+builder.Services.AddScoped<IExcelReportService, ExcelReportService>();
 
 builder.Services.AddControllers();
 

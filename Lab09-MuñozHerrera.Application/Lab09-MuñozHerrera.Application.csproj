@@ -4,6 +4,10 @@
     <ProjectReference Include="..\Lab09-MuñozHerrera.Core\Lab09-MuñozHerrera.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.104.2" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Lab09_MuñozHerrera.Application</RootNamespace>
